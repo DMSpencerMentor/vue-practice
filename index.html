@@ -8,9 +8,22 @@
 
 
   <div id="app">
-    {{ message }}
-    <input v-model='message'>
-    <p>Computed Reversed message: '{{ reversedMessage }}'</p>
+    <div>
+      <input type="number" v-model.number="num1"/>
+      <span>+</span>
+      <input v-model.number="num2" type="number"/>
+      <span>=</span>
+      <span>{{ num1 + num2 }}</span>
+    </div>
+    <div>
+      <select v-model='name'>
+        <option>Food</option>
+        <option>Water</option>
+        <option>Cake</option>
+        <option>Bacon</option>
+      </select>
+      <p v-if='name'>My favorite thing to ingest is {{ name }}</p>
+    </div>
   </div>
 
 
@@ -24,8 +37,12 @@
 
     var app = new Vue({
       el: '#app',
-      data: {
-        message: 'Hello Spencer!'
+      data() {
+        return {
+          num1: 0,
+          num2: 0,
+          name: ''
+        }
       },
       methods: {
 
