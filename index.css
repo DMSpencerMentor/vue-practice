@@ -1,0 +1,89 @@
+#app {
+    width: 100vw;
+    height: 2000px;
+}
+
+.header {
+    position: fixed;
+    width: 98vw;
+    height: 120px;
+    background-color: blue;
+    border-bottom-left-radius: 50% 20%;
+    border-bottom-right-radius: 50% 20%;
+    animation: grow .5s forwards
+}
+.hamBar {
+    position: fixed;
+    width: 100vw;
+    height: 120px;
+
+    border-bottom-left-radius: 50% 20%;
+    border-bottom-right-radius: 50% 20%;
+    background-color: blue;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    animation: shrink 1s forwards;
+}
+.hamBar:active {
+    animation: growBar 1s forwards
+}
+@keyframes shrink {
+    from{
+        width: 100vw;
+        height: 120px
+    }
+    to{
+        width: 100px;
+        height: 100px
+    }
+}
+@keyframes grow {
+    from{
+        width: 100px;
+        height: 100px
+    }
+    to{
+        width: 100vw;
+        height: 120px
+    }
+}
+@keyframes growBar {
+    from{
+        width: 100px;
+        height: 100px;
+        align-items: center
+    }
+    to{
+        width: 100px;
+        height: 100vh;
+        justify-content: center;
+        border-bottom-left-radius: 0%;
+        border-bottom-right-radius: 0%;
+    }
+}
+
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.hamBarContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hamBarButton {
+    height: 50px
+}
+
+.logo {
+    height: 100px
+}
+
+.routes {
+    width: 30%;
+    display: flex;
+    justify-content: space-around
+
+}

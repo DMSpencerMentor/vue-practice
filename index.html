@@ -3,11 +3,38 @@
 <head>
   <title>My first Vue app</title>
   <script src="https://unpkg.com/vue"></script>
+  <link rel="stylesheet" type="text/css" href="/index.css">
+  
+  
 </head>
 <body>
 
 
-  <div id="app">
+  <div id="app" v-on:scroll="handleScroll">
+    <header v-bind:class='[scrollLoc ? hamBar : header]'>
+      <div class='headerContainer' v-if='!scrollLoc' >
+
+        <img class='logo' src='http://www.logodust.com/img/free/logo26.png' alt='logo'/>
+        <routes class='routes'>
+          <h4>Home</h4>
+          <h4>Projects</h4>
+          <h4>About</h4>
+          <h4>Contact</h4>
+        </routes>
+      </div>
+      <div class='hamBarContainer' v-if='scrollLoc' >
+        <img class='logo' src='http://www.logodust.com/img/free/logo26.png' alt='menuButton'/>
+          
+        <!-- <img class='logo' src='http://www.logodust.com/img/free/logo26.png' alt='logo'/>
+        <routes class='routes'>
+          <h4>Home</h4>
+          <h4>Projects</h4>
+          <h4>About</h4>
+          <h4>Contact</h4>
+        </routes> -->
+      </div>
+    </header>
+    
     <div>
       <input type="number" v-model.number="num1"/>
       <span>+</span>
@@ -22,7 +49,7 @@
         <option>Cake</option>
         <option>Bacon</option>
       </select>
-      <p v-if='name'>My favorite thing to ingest is {{ name }}</p>
+      <p v-if='scrollLoc'>{{ scrollLoc }}</p>
     </div>
   </div>
 
@@ -41,11 +68,24 @@
         return {
           num1: 0,
           num2: 0,
-          name: ''
+          name: 'Food',
+          x: 0,
+          scrollLoc: 0,
+          hamBar: 'hamBar',
+          header: 'header'
         }
       },
       methods: {
-
+        handleScroll() {
+          this.scrollLoc = window.scrollY
+          console.log('scrolling')
+        }
+      },
+      created () {
+        window.addEventListener('scroll', this.handleScroll);
+      },
+      destroyed () {
+        window.removeEventListener('scroll', this.handleScroll);
       },
       computed: {
           reversedMessage: function(){
