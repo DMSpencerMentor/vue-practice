@@ -10,8 +10,9 @@
 <body>
 
 
-  <div id="app" v-on:scroll="handleScroll">
-    <header v-bind:class='[scrollLoc ? hamBar : header]'>
+  <div id="app" @scroll="handleScroll">
+    <header :class='headerObj' 
+            @click='dropSidebar'>
       <div class='headerContainer' v-if='!scrollLoc' >
 
         <img class='logo' src='http://www.logodust.com/img/free/logo26.png' alt='logo'/>
@@ -72,14 +73,35 @@
           name: 'Food',
           x: 0,
           scrollLoc: 0,
-          hamBar: 'hamBar',
-          header: 'header'
+          headerObj: {
+            hamBar: false,
+            header: true,
+            sideBar: false,
+            header_anim: true,
+            sideBar_close: true
+          },
+          sideBarOpen: false
         }
       },
       methods: {
         handleScroll() {
+          if(window.scrollY === 0){
+            this.headerObj.sideBar = false
+            this.headerObj.header = true
+            this.headerObj.hamBar = false
+            this.headerObj.header_anim = true
+          }
+          if(window.scrollY !== 0){
+            this.headerObj.header = false
+            this.headerObj.hamBar = true
+          }
           this.scrollLoc = window.scrollY
-          console.log('scrolling')
+        },
+        dropSidebar() {
+          if(this.scrollLoc !== 0 ){
+            this.headerObj.sideBar = !this.headerObj.sideBar
+            this.headerObj.header_anim = false
+          }
         }
       },
       created () {

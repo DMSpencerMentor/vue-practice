@@ -10,6 +10,9 @@
     background-color: blue;
     border-bottom-left-radius: 50% 20%;
     border-bottom-right-radius: 50% 20%;
+}
+
+.header_anim {
     animation: grow .5s forwards
 }
 .hamBar {
@@ -25,8 +28,16 @@
     align-items: center;
     animation: shrink 1s forwards;
 }
-.hamBar:active {
+.sideBar {
+    width: 100px;
+    height: 100vh;
+    position: fixed;
+
+    background-color: blue;
     animation: growBar 1s forwards
+}
+.sideBar_close {
+    animation: shrinkBar .5s forwards
 }
 @keyframes shrink {
     from{
@@ -52,7 +63,7 @@
     from{
         width: 100px;
         height: 100px;
-        align-items: center
+        align-items: center flex-start
     }
     to{
         width: 100px;
@@ -60,7 +71,24 @@
         justify-content: center;
         border-bottom-left-radius: 0%;
         border-bottom-right-radius: 0%;
+        align-items: flex-start;
     }
+}
+@keyframes shrinkBar {
+    from{
+        width: 100px;
+        height: 100vh;
+        justify-content: center;
+        border-bottom-left-radius: 0%;
+        border-bottom-right-radius: 0%;
+        align-items: flex-start;
+    }
+    to{
+        width: 100px;
+        height: 100px;
+        align-items: center flex-start
+    }
+    
 }
 
 .headerContainer {
